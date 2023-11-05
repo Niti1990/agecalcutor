@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Age Group Counter</title>
+	</head>
+	<body>
+		<h1>Age Group Counter</h1>
+		<label for="ageInput">Enter age: </label>
+		<input type="number" id="ageInput" />
+		<button onclick="countAgeGroup()">Add Person</button>
+
+		<div>
+			<h2>Age Group Counts</h2>
+			<p>Children (0-3): <span id="childCount">0</span></p>
+			<p>Children (4-12): <span id="teenCount">0</span></p>
+			<p>Adults (13-above): <span id="adultCount">0</span></p>
+		</div>
+
+		<script>
+			const ageGroups = {
+				child: 0,
+				teen: 0,
+				adult: 0,
+				senior: 0,
+			}
+
+			function countAgeGroup() {
+				const age = parseInt(document.getElementById('ageInput').value)
+
+				if (isNaN(age)) {
+					alert('Please enter a valid age.')
+					return
+				}
+
+				if (age >= 0 && age <= 3) {
+					ageGroups.child++
+				} else if (age >= 4 && age <= 12) {
+					ageGroups.teen++
+				} else if (age >= 12 && age <= 80) {
+					ageGroups.adult++
+				} else {
+					ageGroups.senior++
+				}
+
+				// Update the counts displayed on the page
+				document.getElementById('childCount').textContent = ageGroups.child
+				document.getElementById('teenCount').textContent = ageGroups.teen
+				document.getElementById('adultCount').textContent = ageGroups.adult
+				document.getElementById('seniorCount').textContent = ageGroups.senior
+			}
+		</script>
+	</body>
+</html>
